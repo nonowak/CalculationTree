@@ -13,4 +13,5 @@ Input:
 			Node('-', Leaf(5))
 			)
 Output of *eval* function: -3.8
+
 Output of *calcToString* function: (((6*2)+3+4)/(-5))
