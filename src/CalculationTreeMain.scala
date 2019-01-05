@@ -26,7 +26,7 @@ case class Node(op: Char, leaves: CalculationTree*) extends CalculationTree {
 
 
   private def handleSingleLeaf(actual: String): String = {
-    val leavesValues = getLeavesValues.map(_.toInt).toList
+    val leavesValues = getLeavesValues.map(_.toInt)
     if (leavesValues.size == 1) {
       op match {
         case '-' =>
@@ -39,7 +39,7 @@ case class Node(op: Char, leaves: CalculationTree*) extends CalculationTree {
   }
 
   def eval(): Double = {
-    val leavesValues: ListBuffer[Double] = getLeavesValues
+    val leavesValues: ListBuffer[Double] = ListBuffer(getLeavesValues: _*)
     for (leaf <- leaves) {
       leaf match {
         case node: Node =>
@@ -65,9 +65,8 @@ case class Node(op: Char, leaves: CalculationTree*) extends CalculationTree {
   }
 
   private def getLeavesValues =
-    ListBuffer(leaves
+    leaves
       .collect { case leaf: Leaf => leaf.value.toDouble }
-      : _*)
 
 }
 
